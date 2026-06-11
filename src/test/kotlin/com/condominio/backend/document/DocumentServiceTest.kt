@@ -7,13 +7,14 @@ import org.mockito.kotlin.*
 
 class DocumentServiceTest {
 
+
 private val repository:
     DocumentRepository = mock()
 
 private val service =
     DocumentService(repository)
 
-// RN01 - Documento deve possuir nome
+// RN23 - Documento deve possuir nome
 @Test
 fun `deve impedir documento sem nome`() {
 
@@ -30,7 +31,7 @@ fun `deve impedir documento sem nome`() {
     }
 }
 
-// RN02 - Documento deve possuir arquivo
+// RN24 - Documento deve possuir arquivo
 @Test
 fun `deve impedir documento sem arquivo`() {
 
@@ -47,7 +48,7 @@ fun `deve impedir documento sem arquivo`() {
     }
 }
 
-// RN03 - Tipo do arquivo deve ser PDF ou imagem
+// RN25 - Tipo do arquivo deve ser PDF ou imagem
 @Test
 fun `deve impedir tipo invalido`() {
 
@@ -64,7 +65,7 @@ fun `deve impedir tipo invalido`() {
     }
 }
 
-// RN04 - Deve salvar documento válido
+// RN26 - Documento válido deve ser salvo
 @Test
 fun `deve salvar documento valido`() {
 

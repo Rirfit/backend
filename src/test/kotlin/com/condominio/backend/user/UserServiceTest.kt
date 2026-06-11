@@ -10,6 +10,7 @@ import java.util.*
 
 class UserServiceTest {
 
+
 private val repository: UserRepository = mock()
 
 private val passwordEncoder: PasswordEncoder = mock()
@@ -19,7 +20,7 @@ private val service = UserService(
     passwordEncoder
 )
 
-// RN01 - Usuário deve ser criado com senha criptografada
+// RN03 - Usuário deve ser criado com senha criptografada
 @Test
 fun `deve criar usuario com sucesso`() {
 
@@ -66,7 +67,7 @@ fun `deve criar usuario com sucesso`() {
     verify(repository).save(any())
 }
 
-// RN02 - Email não pode ser duplicado
+// RN04 - Email não pode ser duplicado
 @Test
 fun `deve impedir email duplicado`() {
 
@@ -91,9 +92,9 @@ fun `deve impedir email duplicado`() {
         .save(any())
 }
 
-// RN03 - Apartamento pode possuir no máximo 2 moradores
+// RN05 - Apartamento pode possuir no máximo 6 moradores
 @Test
-fun `deve impedir mais de dois moradores no apartamento`() {
+fun `deve impedir mais de seis moradores no apartamento`() {
 
     val apartment = Apartment(
         id = 1L,
@@ -116,7 +117,7 @@ fun `deve impedir mais de dois moradores no apartamento`() {
 
     whenever(
         repository.countByApartmentId(1L)
-    ).thenReturn(2)
+    ).thenReturn(6)
 
     assertThrows<RuntimeException> {
 
@@ -127,7 +128,7 @@ fun `deve impedir mais de dois moradores no apartamento`() {
         .save(any())
 }
 
-// RN04 - Usuário deve existir para busca por ID
+// RN06 - Usuário deve existir para busca por ID
 @Test
 fun `deve impedir busca de usuario inexistente`() {
 

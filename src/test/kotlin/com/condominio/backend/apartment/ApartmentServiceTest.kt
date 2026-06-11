@@ -7,62 +7,66 @@ import org.mockito.kotlin.*
 
 class ApartmentServiceTest {
 
-    private val repository: ApartmentRepository = mock()
+private val repository: ApartmentRepository = mock()
 
-    private val service = ApartmentService(
-        repository
+private val service = ApartmentService(
+    repository
+)
+
+// RN01 - Apartamento deve ser criado com bloco e número válidos
+@Test
+fun `deve criar apartamento com sucesso`() {
+
+    val apartment = Apartment(
+        id = 1L,
+        block = "A",
+        number = "101"
     )
 
-    @Test
-    fun `deve criar apartamento com sucesso`() {
-
-        val apartment = Apartment(
-            id = 1L,
-            block = "A",
-            number = "101"
-        )
-
-        whenever(
-            repository.existsByBlockAndNumber(
-                "A",
-                "101"
-            )
-        ).thenReturn(false)
-
-        doAnswer {
-            it.arguments[0]
-        }.whenever(repository).save(any())
-
-        val result = service.create(apartment)
-
-        assertEquals(
+    whenever(
+        repository.existsByBlockAndNumber(
             "A",
-            result.block
+            "101"
         )
+    ).thenReturn(false)
 
-        verify(repository).save(any())
+    doAnswer {
+        it.arguments[0]
+    }.whenever(repository).save(any())
+
+    val result = service.create(apartment)
+
+    assertEquals(
+        "A",
+        result.block
+    )
+
+    verify(repository).save(any())
+}
+
+// RN02 - Não deve permitir apartamentos duplicados
+@Test
+fun `deve impedir apartamento duplicado`() {
+
+    val apartment = Apartment(
+        block = "A",
+        number = "101"
+    )
+
+    whenever(
+        repository.existsByBlockAndNumber(
+            "A",
+            "101"
+        )
+    ).thenReturn(true)
+
+    assertThrows<RuntimeException> {
+
+        service.create(apartment)
     }
 
-    @Test
-    fun `deve impedir apartamento duplicado`() {
+    verify(repository, never())
+        .save(any())
+}
 
-        val apartment = Apartment(
-            block = "A",
-            number = "101"
-        )
-
-        whenever(
-            repository.existsByBlockAndNumber(
-                "A",
-                "101"
-            )
-        ).thenReturn(true)
-
-        assertThrows<RuntimeException> {
-            service.create(apartment)
-        }
-
-        verify(repository, never())
-            .save(any())
-    }
 }

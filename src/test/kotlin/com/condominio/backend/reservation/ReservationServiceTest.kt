@@ -15,7 +15,7 @@ private val repository:
 private val service =
     ReservationService(repository)
 
-// RN01 - Reserva deve iniciar como PENDING
+// RN13 - Reserva deve iniciar com status PENDING
 @Test
 fun `deve criar reserva com sucesso`() {
 
@@ -49,7 +49,7 @@ fun `deve criar reserva com sucesso`() {
     )
 }
 
-// RN02 - Não deve permitir conflito de reserva
+// RN14 - Não deve permitir conflito de reserva
 @Test
 fun `deve impedir conflito de reserva`() {
 
@@ -78,7 +78,7 @@ fun `deve impedir conflito de reserva`() {
         .save(any())
 }
 
-// RN03 - Reserva não pode possuir data passada
+// RN15 - Reserva não pode possuir data passada
 @Test
 fun `deve impedir reserva em data passada`() {
 
@@ -99,7 +99,7 @@ fun `deve impedir reserva em data passada`() {
         .save(any())
 }
 
-// RN04 - Reserva deve possuir nome do espaço
+// RN16 - Reserva deve possuir nome do espaço
 @Test
 fun `deve impedir reserva sem nome do espaco`() {
 

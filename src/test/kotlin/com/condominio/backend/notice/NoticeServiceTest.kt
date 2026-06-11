@@ -7,65 +7,68 @@ import org.mockito.kotlin.*
 
 class NoticeServiceTest {
 
-    private val repository:
-        NoticeRepository = mock()
 
-    private val service =
-        NoticeService(repository)
+private val repository:
+    NoticeRepository = mock()
 
-    // RN01 - Aviso deve possuir título
-    @Test
-    fun `deve impedir aviso sem titulo`() {
+private val service =
+    NoticeService(repository)
 
-        val notice =
-            Notice(
-                title = "",
-                content = "Conteúdo"
-            )
+// RN17 - Aviso deve possuir título
+@Test
+fun `deve impedir aviso sem titulo`() {
 
-        assertThrows<RuntimeException> {
-
-            service.create(notice)
-        }
-    }
-
-    // RN02 - Aviso deve possuir conteúdo
-    @Test
-    fun `deve impedir aviso sem conteudo`() {
-
-        val notice =
-            Notice(
-                title = "Aviso",
-                content = ""
-            )
-
-        assertThrows<RuntimeException> {
-
-            service.create(notice)
-        }
-    }
-
-    // RN03 - Avisos possuem data automática
-    @Test
-    fun `deve criar aviso com sucesso`() {
-
-        val notice =
-            Notice(
-                title = "Piscina interditada",
-                content = "Manutenção"
-            )
-
-        doAnswer {
-            it.arguments[0]
-        }.whenever(repository)
-            .save(any())
-
-        val result =
-            service.create(notice)
-
-        assertEquals(
-            "Piscina interditada",
-            result.title
+    val notice =
+        Notice(
+            title = "",
+            content = "Conteúdo"
         )
+
+    assertThrows<RuntimeException> {
+
+        service.create(notice)
     }
+}
+
+// RN18 - Aviso deve possuir conteúdo
+@Test
+fun `deve impedir aviso sem conteudo`() {
+
+    val notice =
+        Notice(
+            title = "Aviso",
+            content = ""
+        )
+
+    assertThrows<RuntimeException> {
+
+        service.create(notice)
+    }
+}
+
+// RN19 - Avisos devem possuir data automática
+@Test
+fun `deve criar aviso com sucesso`() {
+
+    val notice =
+        Notice(
+            title = "Piscina interditada",
+            content = "Manutenção"
+        )
+
+    doAnswer {
+        it.arguments[0]
+    }.whenever(repository)
+        .save(any())
+
+    val result =
+        service.create(notice)
+
+    assertEquals(
+        "Piscina interditada",
+        result.title
+    )
+}
+
+
 }
