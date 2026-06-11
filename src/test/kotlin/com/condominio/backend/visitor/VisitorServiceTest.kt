@@ -10,6 +10,11 @@ import java.util.*
 
 class VisitorServiceTest {
 
+/*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
 
 private val repository:
     VisitorRepository = mock()
@@ -38,6 +43,11 @@ fun `deve criar visitante com sucesso`() {
                 LocalDateTime.now()
                     .plusDays(1)
         )
+
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     doAnswer {
         it.arguments[0]

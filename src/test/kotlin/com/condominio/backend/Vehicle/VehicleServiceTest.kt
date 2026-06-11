@@ -8,6 +8,11 @@ import java.util.*
 
 class VehicleServiceTest {
 
+/*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
 
 private val repository:
     VehicleRepository = mock()
@@ -25,6 +30,11 @@ fun `deve cadastrar veiculo com sucesso`() {
             model = "Civic",
             color = "Preto"
         )
+
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     whenever(
         repository.existsByPlate(

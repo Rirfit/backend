@@ -7,6 +7,14 @@ import org.mockito.kotlin.*
 
 class ApartmentServiceTest {
 
+
+/*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
+
+
 private val repository: ApartmentRepository = mock()
 
 private val service = ApartmentService(
@@ -22,6 +30,11 @@ fun `deve criar apartamento com sucesso`() {
         block = "A",
         number = "101"
     )
+
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     whenever(
         repository.existsByBlockAndNumber(
@@ -40,6 +53,11 @@ fun `deve criar apartamento com sucesso`() {
         "A",
         result.block
     )
+
+/*
+ * VERIFY:
+ * Verifica se o método esperado foi executado.
+ */
 
     verify(repository).save(any())
 }

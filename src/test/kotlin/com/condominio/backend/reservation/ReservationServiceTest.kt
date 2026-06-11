@@ -8,6 +8,12 @@ import java.time.LocalDateTime
 
 class ReservationServiceTest {
 
+    /*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
+
 
 private val repository:
     ReservationRepository = mock()
@@ -26,6 +32,11 @@ fun `deve criar reserva com sucesso`() {
                 LocalDateTime.now()
                     .plusDays(1)
         )
+
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     whenever(
         repository
@@ -73,6 +84,11 @@ fun `deve impedir conflito de reserva`() {
 
         service.create(reservation)
     }
+
+/*
+ * VERIFY:
+ * Verifica se o método esperado foi executado.
+ */
 
     verify(repository, never())
         .save(any())

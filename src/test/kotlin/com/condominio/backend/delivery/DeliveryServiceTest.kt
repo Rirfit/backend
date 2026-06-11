@@ -9,6 +9,12 @@ import java.util.*
 class DeliveryServiceTest {
 
 
+/*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
+
 private val repository:
     DeliveryRepository = mock()
 
@@ -23,6 +29,11 @@ fun `deve criar encomenda com sucesso`() {
         Delivery(
             description = "Amazon"
         )
+
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     doAnswer {
         it.arguments[0]

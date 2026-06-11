@@ -7,6 +7,11 @@ import org.mockito.kotlin.*
 
 class DocumentServiceTest {
 
+/*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
 
 private val repository:
     DocumentRepository = mock()
@@ -75,6 +80,11 @@ fun `deve salvar documento valido`() {
             fileType = "application/pdf",
             data = "teste".toByteArray()
         )
+
+        /*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     doAnswer {
         it.arguments[0]

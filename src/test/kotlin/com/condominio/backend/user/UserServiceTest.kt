@@ -10,6 +10,12 @@ import java.util.*
 
 class UserServiceTest {
 
+    /*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
+
 
 private val repository: UserRepository = mock()
 
@@ -38,6 +44,11 @@ fun `deve criar usuario com sucesso`() {
         apartment = apartment
     )
 
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
+
     whenever(
         repository.existsByEmail(
             user.email
@@ -63,6 +74,12 @@ fun `deve criar usuario com sucesso`() {
         "senha-criptografada",
         result.password
     )
+
+
+    /*
+ * VERIFY:
+ * Verifica se o método esperado foi executado.
+ */
 
     verify(repository).save(any())
 }

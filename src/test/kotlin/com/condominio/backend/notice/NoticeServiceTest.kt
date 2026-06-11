@@ -7,6 +7,12 @@ import org.mockito.kotlin.*
 
 class NoticeServiceTest {
 
+    /*
+ * MOCK:
+ * Simula o comportamento do repositório
+ * sem acessar o banco real.
+ */
+
 
 private val repository:
     NoticeRepository = mock()
@@ -55,6 +61,11 @@ fun `deve criar aviso com sucesso`() {
             title = "Piscina interditada",
             content = "Manutenção"
         )
+
+/*
+ * STUB:
+ * Simula retorno esperado para o teste.
+ */
 
     doAnswer {
         it.arguments[0]
