@@ -1,0 +1,5 @@
+RN01 - Reserva não pode ser em data passada
+RN02 - Espaço não pode possuir conflito de horário
+RN03 - Usuário inativo não pode reservar
+RN04 - Reserva deve possuir morador
+RN05 - Reserva aprovada muda status

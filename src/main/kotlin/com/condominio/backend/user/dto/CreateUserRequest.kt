@@ -6,14 +6,18 @@ import jakarta.validation.constraints.NotBlank
 
 data class CreateUserRequest(
 
-    @field:NotBlank
-    val name: String,
+@field:NotBlank
+val name: String,
 
-    @field:Email
-    val email: String,
+@field:Email
+val email: String,
 
-    @field:NotBlank
-    val password: String,
+@field:NotBlank
+val password: String,
 
-    val role: Role = Role.RESIDENT
+val apartmentId: Long,
+
+val role: Role = Role.RESIDENT
+
+
 )
