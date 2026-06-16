@@ -22,14 +22,17 @@ data class User(
     var email: String = "",
 
     @field:NotBlank
+    var telefone: String = "",
+
+    @field:NotBlank
     var password: String = "",
 
     @Enumerated(EnumType.STRING)
     var role: Role = Role.RESIDENT,
 
     @ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name = "apartment_id")
-var apartment: Apartment? = null,
+    @JoinColumn(name = "apartment_id")
+    var apartment: Apartment? = null,
 
     var active: Boolean = true
 )
